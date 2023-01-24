@@ -1,33 +1,25 @@
 import PropTypes from 'prop-types';
-import Button from 'shared/Button/Button';
-import styles from '../feedback.module.scss';
+// import Button from 'shared/Button/Button';
+import styles from './feedbackOptions.module.scss';
 
-const FeedbackOptions = ({ onLeaveFeedback }) => {
-  return (
-    <>
-      <div className={styles.blockBtn}>
-        <Button
-          onClick={() => onLeaveFeedback('good')}
-          text="Good"
-          type="button"
-        />
-        <Button
-          onClick={() => onLeaveFeedback('neutral')}
-          text="Neutral"
-          type="button"
-        />
-        <Button
-          onClick={() => onLeaveFeedback('bad')}
-          text="Bad"
-          type="button"
-        />
-      </div>
-    </>
-  );
-};
+function FeedbackOptions({ options, onLeaveFeedback }) {
+  const elements = options.map(option => (
+    <button
+      type="button"
+      className={styles.btn}
+      key={option}
+      onClick={() => onLeaveFeedback(option)}
+    >
+      {option}
+    </button>
+  ));
+
+  return <ul className={styles.listButtons}>{elements}</ul>;
+}
 
 export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string.isRequired),
   onLeaveFeedback: PropTypes.func.isRequired,
 };

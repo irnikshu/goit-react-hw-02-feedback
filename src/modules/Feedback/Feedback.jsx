@@ -55,7 +55,10 @@ class Feedback extends Component {
     return (
       <div className={styles.wrapper}>
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
+          <FeedbackOptions
+            onLeaveFeedback={this.onLeaveFeedback}
+            options={Object.keys(this.state)}
+          />
         </Section>
         <Section title="Statistics">
           {this.countTotalFeedback() > 0 ? (
